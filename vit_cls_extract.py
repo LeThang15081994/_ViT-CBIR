@@ -17,9 +17,10 @@ class vit_feature_extract:
         model = ViTForImageClassification.from_pretrained('google/vit-base-patch16-224').to(device)
 
         inputs = processor(img, return_tensors="pt")
-        outputs = model(**inputs, output_hidden_state = True).hidden_states[-1][:,0,:]
+        with torch.no_grad():
+            output = model(**inputs, output_hidden_state = True).hidden_states[-1][:,0,:].detach().cpu().numpy()
 
-        return outputs
+        return output
 
     def store_vit_CLS(self, data_path):  # new method to store vectors
         src_image = []
@@ -32,7 +33,5 @@ class vit_feature_extract:
 
             src_image.append(img)
             paths.append(img_path_full)
-
-           
 
 if __name__ == "__main__":
