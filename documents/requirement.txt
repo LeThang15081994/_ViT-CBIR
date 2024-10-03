@@ -1,0 +1,7 @@
+python = 3.12.5
+torch
+transformer
+pickle
+numpy
+matplotlib
+opencv-python
