@@ -13,7 +13,7 @@ class search_query:
     def __init__(self):
         pass
 
-    def cosinesimility(preprocess_query, preprocess_cls):
+    def Cosinesimilarity(preprocess_query, preprocess_cls):
 
 
 if __name__ == "__main__":
