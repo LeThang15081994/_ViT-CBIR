@@ -20,11 +20,11 @@ class vit_feature_extract:
         daily_directory = os.path.join(log_directory, today) 
         os.makedirs(daily_directory, exist_ok=True)
 
-        log_file = os.path.join(daily_directory, 'logging_error.txt')
+        log_file = os.path.join(daily_directory, 'logging.txt')
         logging.basicConfig(level=logging.INFO,  
                             format='%(asctime)s - %(levelname)s - %(message)s',
-                            filename=log_file,  
-                            filemode='a')  
+                            handlers=[logging.FileHandler(log_file, mode='a'),  
+                                      logging.StreamHandler()])  
         self.logger = logging.getLogger(__name__)  
 
     def vit_preprocessing(self, img):
@@ -37,18 +37,17 @@ class vit_feature_extract:
             Output: Đại diện token CLS hoặc None nếu xảy ra lỗi.
         """
         try:
-            print('Đang xử lý-------------------------------------------------------------------------------')
             inputs = self.processor(img, return_tensors="pt").to(self.device)
 
             with torch.no_grad():
+                print('')
                 outputs = self.model(**inputs, output_hidden_states = True).hidden_states[-1][:, 0 ,:].detach().cpu().numpy() # get CLS token
-            print('Hoàn tất-------------------------------------------------------------------------------')
             return outputs
         except Exception as e:
             self.logger.error(f"error in processing: {e}")
             return None
 
-    def store_vit_CLS(self, data_path):
+    def save_cls_vectors (self, data_path, database_path):
         """Lưu trữ các CLS tocken.
 
         Args:
@@ -57,27 +56,34 @@ class vit_feature_extract:
         Returns:
             Output: cls_data.pkl hoặc none nếu xảy ra lỗi.
         """
-        src_image = []
+        cls_vectors = []
         paths = []
         try: 
             for img_path in os.listdir(data_path):
                 img_path_full = os.path.join(data_path, img_path)
                 img = cv2.imread(img_path_full)
                 img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
-                src_image.append(img)
+                print('Đang xử lý-------'+ img_path_full)
+                src_image = self.vit_preprocessing(img)
+                print('Hoàn tất---------'+ img_path_full + '\n')
+                cls_vectors.append(src_image)
                 paths.append(img_path_full)
 
-            cls_vectors = self.vit_preprocessing(src_image)
             
-            with open(os.path.join(data_path, 'cls.pkl'), 'wb') as f:
-                pickle.dump(cls_vectors, f)
-            self.logger.info(f"Saved {len(cls_vectors)} CLS token.")
-        except Exception as e:
-            self.logger.error(f"error in processing - Archive failed: {e}")
-            return None
+            os.makedirs(database_path, exist_ok=True)
 
+            with open(os.path.join(database_path, 'cls_vetors.pkl'), 'wb') as f:
+                pickle.dump(cls_vectors, f)
+
+            with open(os.path.join(database_path, 'paths_vetors.pkl'), 'wb') as f:
+                pickle.dump(paths, f)
+
+            self.logger.info(f"Saved {len(cls_vectors)} CLS token and {len(paths)} path link.")
+        except Exception as e:
+            self.logger.error(f"Error while saving CLS vectors: {e}")
+            return None
 
 if __name__ == "__main__":
     img_preprocess = vit_feature_extract()
-    img_preprocess.store_vit_CLS('./dataset/test_images')
+    img_preprocess.save_cls_vectors('./dataset/train_images', './database')
    

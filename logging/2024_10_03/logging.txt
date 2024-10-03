@@ -1,0 +1,24 @@
+2024-10-03 14:44:14,032 - ERROR - error in processing - Archive failed: [WinError 3] The system cannot find the path specified: './dataset/test_images'
+2024-10-03 14:46:32,112 - ERROR - error in processing - Archive failed: OpenCV(4.10.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2024-10-03 14:47:45,649 - ERROR - error in processing - Archive failed: OpenCV(4.10.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2024-10-03 14:53:09,105 - ERROR - error in processing - Archive failed: OpenCV(4.10.0) D:\a\opencv-python\opencv-python\opencv\modules\imgproc\src\color.cpp:196: error: (-215:Assertion failed) !_src.empty() in function 'cv::cvtColor'
+
+2024-10-03 14:54:29,456 - ERROR - error in processing - Archive failed: [Errno 2] No such file or directory: './database\\cls.pkl'
+2024-10-03 14:55:20,360 - ERROR - error in processing - Archive failed: [Errno 2] No such file or directory: './database/cls.pkl'
+2024-10-03 15:02:54,306 - ERROR - error in processing - Archive failed: [Errno 2] No such file or directory: './database/cls.pkl'
+2024-10-03 15:19:35,817 - ERROR - Error while saving CLS vectors: [WinError 3] The system cannot find the path specified: './dataset/test_image'
+2024-10-03 15:19:53,453 - ERROR - Error while saving CLS vectors: [WinError 3] The system cannot find the path specified: './dataset/test_image'
+2024-10-03 15:20:08,307 - INFO - Saved 3 CLS token.
+2024-10-03 15:40:02,522 - ERROR - Error while saving CLS vectors: OpenCV(4.10.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\alloc.cpp:73: error: (-4:Insufficient memory) Failed to allocate 1920000 bytes in function 'cv::OutOfMemoryError'
+
+2024-10-03 15:47:35,002 - ERROR - Error while saving CLS vectors: OpenCV(4.10.0) D:\a\opencv-python\opencv-python\opencv\modules\core\src\alloc.cpp:73: error: (-4:Insufficient memory) Failed to allocate 3145728 bytes in function 'cv::OutOfMemoryError'
+
+2024-10-03 15:47:58,701 - INFO - Saved 3 CLS token.
+2024-10-03 15:50:47,978 - INFO - Saved 3 CLS token.
+2024-10-03 15:55:49,269 - INFO - Saved 3 CLS token.
+2024-10-03 15:57:35,332 - INFO - Saved 3 CLS token.
+2024-10-03 15:58:09,091 - INFO - Saved 3 CLS token.
+2024-10-03 15:59:07,061 - INFO - Saved 3 CLS token.
+2024-10-03 16:09:31,051 - INFO - Saved 32412 CLS token.
