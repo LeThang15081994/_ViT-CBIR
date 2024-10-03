@@ -8,3 +8,13 @@ import os
 import logging
 from datetime import datetime
 from vit_cls_extract import vit_feature_extract
+
+class search_query:
+    def __init__(self):
+        pass
+
+    def cosinesimility(preprocess_query, preprocess_cls):
+
+
+if __name__ == "__main__":
+    pass
