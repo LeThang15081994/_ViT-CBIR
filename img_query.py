@@ -8,15 +8,20 @@ from PIL import Image
 
 from vit_cls_extract import vit_feature_extract
 
-def visualization(vectors):
-    ids = np.argsort(distance)[:10] # get 10 image have nearest image.
-    nearest_image = [(paths[id], distance[id]) for id in ids]
+def visualization(vectors,img_query, paths):
+    plt.figure(figsize=(3,3))
+    plt.title('Hình ảnh Query')
+    plt.imshow(img_query)
+    plt.show()
+    
+    ids = np.argsort(vectors)[:10] # get 10 image have nearest image.
+    nearest_image = [(paths[id], vectors[id]) for id in ids]
     # visualization
     axes = []
     grid_size = int(math.ceil(math.sqrt(len(nearest_image))))
     fig = plt.figure(figsize=(10,8))
     plt.title('Hình ảnh search')
-    
+
     for id in range(len(nearest_image)):
         draw_image = nearest_image[id]
         axes.append(fig.add_subplot(grid_size, grid_size, id+1))
@@ -34,7 +39,7 @@ def L2_norm(preprocess_data, preprocess_query):
 
 if __name__ == "__main__":
     #Load hình ảnh
-    img_preprocess = cv2.imread('./dataset/test_images/1.jpg')
+    img_preprocess = cv2.imread('./dataset/test_images/4.jpg')
     img_preprocess = cv2.cvtColor(img_preprocess,cv2.COLOR_BGR2RGB)
 
     #Tiền xử lý hình ảnh chuyển thành vector
@@ -50,9 +55,5 @@ if __name__ == "__main__":
     
     # tính khoảng cách sử dụng L2
     distance = L2_norm(vectors, img_query)
-    plt.figure(figsize=(3,3))
-    plt.title('Hình ảnh Query')
-    plt.imshow(img_preprocess)
-    visualization(distance)
-    plt.show()
+    visualization(distance, img_preprocess, paths)
     
