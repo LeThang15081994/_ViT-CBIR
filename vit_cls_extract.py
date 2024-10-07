@@ -38,11 +38,11 @@ class vit_feature_extract:
         """
         try:
             inputs = self.processor(img, return_tensors="pt").to(self.device)
-
             with torch.no_grad():
                 print('')
                 outputs = self.model(**inputs, output_hidden_states = True).hidden_states[-1][:, 0 ,:].detach().cpu().numpy() # get CLS token
-            return outputs
+            cls_normalized = outputs / np.linalg.norm(outputs, axis = 1)[:, np.newaxis] # normalized
+            return cls_normalized
         except Exception as e:
             self.logger.error(f"error in processing: {e}")
             return None
@@ -54,7 +54,7 @@ class vit_feature_extract:
             img (Any): Hình ảnh đầu vào cần tiền xử lý và trích xuất CLS.
 
         Returns:
-            Output: cls_data.pkl hoặc none nếu xảy ra lỗi.
+            Output: cls_data.pkl and paths.pkl hoặc none nếu xảy ra lỗi.
         """
         cls_vectors = []
         paths = []

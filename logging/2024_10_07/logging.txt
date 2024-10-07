@@ -1,0 +1,17 @@
+2024-10-07 11:22:57,759 - ERROR - error in processing: type() takes 1 or 3 arguments
+2024-10-07 11:23:49,295 - ERROR - error in processing: type() takes 1 or 3 arguments
+2024-10-07 14:04:55,395 - ERROR - error in processing: type() takes 1 or 3 arguments
+2024-10-07 14:07:31,049 - ERROR - error in processing: type() takes 1 or 3 arguments
+2024-10-07 14:08:18,622 - ERROR - error in processing: type() takes 1 or 3 arguments
+2024-10-07 14:09:23,888 - ERROR - error in processing: type() takes 1 or 3 arguments
+2024-10-07 14:10:39,250 - ERROR - error in processing: type() takes 1 or 3 arguments
+2024-10-07 14:11:59,910 - ERROR - error in processing: type() takes 1 or 3 arguments
+2024-10-07 14:18:24,828 - ERROR - error in processing: type() takes 1 or 3 arguments
+2024-10-07 14:18:54,574 - ERROR - error in processing: type() takes 1 or 3 arguments
+2024-10-07 14:19:18,557 - ERROR - error in processing: type() takes 1 or 3 arguments
+2024-10-07 14:19:46,908 - ERROR - error in processing: type() takes 1 or 3 arguments
+2024-10-07 14:21:23,663 - ERROR - error in processing: type() takes 1 or 3 arguments
+2024-10-07 15:10:55,296 - INFO - Saved 32412 CLS token and 32412 path link.
+2024-10-07 15:18:11,639 - INFO - Saved 32412 CLS token and 32412 path link.
+2024-10-07 16:05:33,954 - INFO - Saved 32412 CLS token and 32412 path link.
+2024-10-07 16:14:59,382 - INFO - Saved 32412 CLS token and 32412 path link.
