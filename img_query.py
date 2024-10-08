@@ -9,24 +9,24 @@ from PIL import Image
 from vit_cls_extract import vit_feature_extract
 
 def visualization(vectors,img_query, paths):
-    plt.figure(figsize=(3,3))
-    plt.title('Hình ảnh Query')
-    plt.imshow(img_query)
-    plt.show()
-    
-    ids = np.argsort(vectors)[:10] # get 10 image have nearest image.
+    ids = np.argsort(vectors)[:20] # get 20 image have nearest image.
     nearest_image = [(paths[id], vectors[id]) for id in ids]
     # visualization
     axes = []
     grid_size = int(math.ceil(math.sqrt(len(nearest_image))))
     fig = plt.figure(figsize=(10,8))
-    plt.title('Hình ảnh search')
+    #plt.title('Hình ảnh search')
+
+    ax_query = fig.add_subplot(grid_size, grid_size, 1)
+    ax_query.set_title('Hình ảnh Query')
+    ax_query.imshow(img_query)
+    ax_query.axis('off')  # Ẩn trục
 
     for id in range(len(nearest_image)):
         draw_image = nearest_image[id]
-        axes.append(fig.add_subplot(grid_size, grid_size, id+1))
+        axes.append(fig.add_subplot(grid_size, grid_size, id+2))
 
-        axes[-1].set_title(draw_image[1])
+        axes[-1].set_title(f'{draw_image[1]:.2f}')
         plt.imshow(Image.open(draw_image[0]))
 
     fig.tight_layout()
@@ -39,7 +39,7 @@ def L2_norm(preprocess_data, preprocess_query):
 
 if __name__ == "__main__":
     #Load hình ảnh
-    img_preprocess = cv2.imread('./dataset/test_images/4.jpg')
+    img_preprocess = cv2.imread('./testimg/wolf2.jpg')
     img_preprocess = cv2.cvtColor(img_preprocess,cv2.COLOR_BGR2RGB)
 
     #Tiền xử lý hình ảnh chuyển thành vector

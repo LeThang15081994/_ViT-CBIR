@@ -1,0 +1,2 @@
+2024-10-08 07:59:27,577 - ERROR - Error while saving CLS vectors: [WinError 3] The system cannot find the path specified: './dataset/train_images'
+2024-10-08 08:01:01,590 - INFO - Saved 4738 CLS token and 4738 path link.

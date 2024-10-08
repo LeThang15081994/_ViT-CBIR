@@ -85,5 +85,5 @@ class vit_feature_extract:
 
 if __name__ == "__main__":
     img_preprocess = vit_feature_extract()
-    img_preprocess.save_cls_vectors('./dataset/train_images', './database')
+    img_preprocess.save_cls_vectors('./dataset', './database')
    
